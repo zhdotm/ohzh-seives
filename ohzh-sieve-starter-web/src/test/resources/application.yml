@@ -1,0 +1,17 @@
+server:
+  port: ${port:8080}
+
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  application:
+    name: example-sieve
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/demo?characterEncoding=utf8&serverTimezone=GMT%2B8
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+logging:
+  level:
+    root: debug
