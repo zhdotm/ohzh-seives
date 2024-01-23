@@ -10,6 +10,7 @@
     <modules>
         <module>ohzh-sieve-core</module>
         <module>ohzh-sieve-mybatis</module>
+        <module>ohzh-sieve-starter-web</module>
     </modules>
     <packaging>pom</packaging>
     <description>数据筛选器</description>
@@ -78,6 +79,11 @@
             <dependency>
                 <groupId>io.github.zhdotm</groupId>
                 <artifactId>ohzh-sieve-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.github.zhdotm</groupId>
+                <artifactId>ohzh-sieve-mybatis</artifactId>
                 <version>${project.version}</version>
             </dependency>
         </dependencies>
