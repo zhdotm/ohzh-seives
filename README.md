@@ -79,6 +79,20 @@ public List<TableX> joinSelect() {
 
 ### 5、改写效果
 
+#### 5.1、简单查询
+
+[数据筛子]SQL增强前: select * from table_x where table_x.column_1 = 'zhangsan'
+
+[数据筛子]SQL增强后: SELECT * FROM table_x WHERE table_x.column_1 = 'zhangsan' AND table_x.column_1 IN ('x_001', 'x_002', 'x_003') AND table_x.column_3 = 'x_3xxx' AND table_x.column_4 = 'x_4xxx'
+
+#### 5.2、子查询
+
+[数据筛子]SQL增强前: select * from (select table_x.* from table_x  where table_x.column_2 in (select table_y.column_2 from table_y)) as table_x_part
+
+[数据筛子]SQL增强后: SELECT * FROM (SELECT table_x.* FROM table_x WHERE table_x.column_2 IN (SELECT table_y.column_2 FROM table_y WHERE table_y.column_1 IN ('y_001', 'y_002', 'y_003') AND table_y.column_3 = 'y_3yyy' AND table_y.column_4 = 'y_4yyy') AND table_x.column_1 IN ('x_001', 'x_002', 'x_003') AND table_x.column_3 = 'x_3xxx' AND table_x.column_4 = 'x_4xxx') AS table_x_part
+
+#### 5.3、连表查询
+
  [数据筛子]SQL增强前: select table_x.* from table_x join table_y on table_x.column_3 = table_y.column_3  where table_x.column_4 = 'x4_xxx'
 
 [数据筛子]SQL增强后: SELECT table_x.* FROM table_x JOIN table_y ON table_x.column_3 = table_y.column_3 AND table_y.column_1 IN ('y_001', 'y_002', 'y_003') AND table_y.column_3 = 'y_3yyy' AND table_y.column_4 = 'y_4yyy' WHERE table_x.column_4 = 'x4_xxx' AND table_x.column_1 IN ('x_001', 'x_002', 'x_003') AND table_x.column_3 = 'x_3xxx' AND table_x.column_4 = 'x_4xxx'
